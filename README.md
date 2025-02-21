@@ -102,6 +102,6 @@ If you run into issues:
 ## To-do
 
 These functionalities are down the road:
-- Selectively ignore certain vendors, product categories, types, etc.
+- Selectively ignore certain ~~vendors~~, product categories, types, etc.
 - Make API call more efficient (currently, some generated text is thrown out, e.g. for items with multiple images, SEO titles and descriptions are generated for every image but only saved for the first one).
 - (Distant future) integrate the Shopify API to download and upload items automatically, allowing for automated captioning at regular intervals.
