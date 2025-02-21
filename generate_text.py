@@ -8,7 +8,7 @@ import yaml
 
 from log_utils import APILogger
 from math import ceil
-from typing import Dict, Union, Optional
+from typing import Dict, Union, Optional, List
 
 def product_context(
     product_title: str = None,
@@ -95,10 +95,15 @@ class CaptionGenerator:
         except Exception as e:
             print(f"Error generating text with image: {e}")
             # Fall back to text-only generation
+            log_data = {
+                "image_url": image_url,
+                "context": context,
+                "error": e,
+            }
             return {
-                "Image Alt Text": "Alt text unavailable",
-                "SEO Title": "SEO title unavailable",
-                "SEO Description": "SEO description unavailable"
+                "Image Alt Text": None,
+                "SEO Title": None,
+                "SEO Description": None,
             }
 
 
@@ -111,6 +116,7 @@ class CaptionGenerator:
         use_vendor: bool = True,
         use_category: bool = True,
         use_type: bool = True,
+        vendors_to_ignore: Optional[List] = None,
         store_context: Optional[str] = None,
         ) -> int:
         """
@@ -151,7 +157,7 @@ class CaptionGenerator:
             
             product_title=row["Title"]
             image_url = row["Image Src"]
-            vendor = row["Vendor"] if use_vendor is True else None
+            vendor = row["Vendor"] if use_vendor is True and row["Vendor"] not in vendors_to_ignore else None
             product_type = row["Type"] if use_type is True else None
             category = row["Product Category"] if use_category is True else None
             
@@ -216,6 +222,7 @@ def main():
     use_vendor: bool = config.get("use_vendor", True)
     use_category: bool = config.get("use_category", True)
     use_type: bool = config.get("use_type", True)
+    vendors_to_ignore: List[str] = config.get("vendors_to_ignore", None)
     store_context: Optional[str] = config.get("store_context")
     batch_size: int = config.get("batch_size", 1)
     repeat: Optional[int] = config.get("repeat")

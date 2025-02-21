@@ -5,12 +5,13 @@ log_file:  # Set to a file for accumulating logs, or leave empty for batch logs
 input_csv: "your_input_csv.csv"  # Path to the CSV file containing product data
 output_csv:  # Where processed results will be saved. Leave blank to get CSV of title "generated_your_input_csv"
 
-use_vendor: false  # Include vendor information in captions
+use_vendor: true  # Include vendor information in captions
 use_category: true  # Include product category in captions
 use_type: true  # Include product type in captions
+vendors_to_ignore: ['EurekaPuzzles']
 
 store_context: "This store specializes in lawncare equipment for homeowners and hobbyists"  # Custom store context
 
 batch_size: 10  # Number of rows to process per batch
-repeat: 10  # Number of times to repeat the process
+repeat:  # Number of times to repeat the process
 start_index: 10  # Starting index for processing the CSV file
