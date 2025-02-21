@@ -122,6 +122,10 @@ class CaptionGenerator:
         """
         Process CSV in batches, returning the index of the last processed row
         """
+        # Set batch_id for this processing run
+        self.batch_id = self.logger.start_new_batch()
+        print(f"Starting batch {self.batch_id}")
+
         df = pd.read_csv(path_to_input_csv)
         print(f"Initial DataFrame shape: {df.shape}")
 
@@ -233,7 +237,6 @@ def main():
     start_index = start_index if start_index is not None else 0
     
     generator = CaptionGenerator(api_key=api_key, model=model, log_file=log_file)
-    batch_id = generator.logger.start_new_batch()
     
     for _ in range(repeat):
         try:
@@ -245,6 +248,7 @@ def main():
                 use_vendor,
                 use_category,
                 use_type,
+                vendors_to_ignore,
                 store_context,
             )
             print(f"Successfully processed up to row {last_processed}")
