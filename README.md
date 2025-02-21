@@ -103,5 +103,9 @@ If you run into issues:
 
 These functionalities are down the road:
 - Selectively ignore certain ~~vendors~~, product categories, types, etc.
+- Implement choices for other LMs (Claude, Gemini)
 - Make API call more efficient (currently, some generated text is thrown out, e.g. for items with multiple images, SEO titles and descriptions are generated for every image but only saved for the first one).
+- Parse product page HTML and use for more accurate SEO and captioning.
+- Implement functionality to create HTML code and descriptions for product page from images and other data.
 - (Distant future) integrate the Shopify API to download and upload items automatically, allowing for automated captioning at regular intervals.
+- (More distant future) GUI for ease of use
