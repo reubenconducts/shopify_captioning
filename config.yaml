@@ -8,7 +8,7 @@ output_csv:  # Where processed results will be saved. Leave blank to get CSV of 
 use_vendor: true  # Include vendor information in captions
 use_category: true  # Include product category in captions
 use_type: true  # Include product type in captions
-vendors_to_ignore: ['EurekaPuzzles']
+vendors_to_ignore: ['Vendor 1', 'Vendor 2']
 
 store_context: "This store specializes in lawncare equipment for homeowners and hobbyists"  # Custom store context
 
